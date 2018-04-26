@@ -1,0 +1,16 @@
+{"namespace": "clas12",
+ "type": "record",
+ "name": "mcevent",
+ "fields": [
+     {"name": "eventNumber", "type": ["int", "null"]},
+     {"name": "mass", "type": ["float", "null"]},
+     {"name": "pid",  "type": ["int", "null"]},
+     {"name": "px", "type": ["float", "null"]},
+     {"name": "py", "type": ["float", "null"]},
+     {"name": "pz", "type": ["float", "null"]},
+     {"name": "vx", "type": ["float", "null"]},
+     {"name": "vy", "type": ["float", "null"]},
+     {"name": "vz", "type": ["float", "null"]},
+     {"name": "status", "type": ["int", "null"]}
+ ]
+}
