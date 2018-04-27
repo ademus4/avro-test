@@ -12,6 +12,7 @@ import org.jlab.io.hipo.HipoDataBank;
 import org.jlab.io.hipo.HipoDataEvent;
 import org.jlab.io.hipo.HipoDataSource;
 import org.apache.avro.Schema;
+import org.apache.avro.file.CodecFactory;
 import org.apache.avro.file.DataFileReader;
 import org.apache.avro.file.DataFileWriter;
 import org.apache.avro.generic.GenericData;
@@ -42,7 +43,7 @@ public class LoadHipo {
         // avro setup
         Schema schema = new Schema.Parser().parse(new File("event.avsc"));
         String hipoFilename = "/home/adam/uni/jlab/data/clas_dis_mcdata.hipo";
-        String outputFilename = "events.avro";
+        String outputFilename = "events_snappy.avro";
         
         // run if needed
         //app.writeAvroFile(schema, outputFilename, hipoFilename);
@@ -87,6 +88,7 @@ public class LoadHipo {
         File file = new File(outputFilename);
         DatumWriter<GenericRecord> datumWriter = new GenericDatumWriter<GenericRecord>(schema);
         DataFileWriter<GenericRecord> dataFileWriter = new DataFileWriter<GenericRecord>(datumWriter);
+        dataFileWriter.setCodec(CodecFactory.snappyCodec());
         dataFileWriter.create(schema, file);
         
         // hipo setup reader
